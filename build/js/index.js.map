@@ -1,0 +1,1 @@
+{"version":3,"file":"js/index.js","mappings":";;;;AAAAA,KAAK,CAAC,MAAM,CAAC,C","sources":["webpack://european-law-institute/./resources/js/index.js"],"sourcesContent":["alert('oiii')"],"names":["alert"],"sourceRoot":""}

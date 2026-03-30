@@ -83,7 +83,7 @@ module.exports = async () => {
                             folder: './build',
                             method: (absoluteItemPath) => {
                                 return /\.asset\.php$/.test(absoluteItemPath) &&
-                                    !/[\\/]blocks[\\/]/.test(absoluteItemPath);
+                                    !/[\\/]template-parts[\\/]/.test(absoluteItemPath);
                             },
                             recursive: true,
                         }
