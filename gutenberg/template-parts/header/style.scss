@@ -1,0 +1,42 @@
+.wp-block-european-law-institute-header {
+
+	height: 100px;
+	display: flex;
+	align-items: center;
+
+	.eli-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		align-items: center;
+	}
+
+	.eli-nav {
+		
+		width: fit-content;
+		margin: 0 auto;
+
+		& ul {
+			display: flex;
+			flex-direction: row;
+			list-style: none;
+			gap: 20px;
+			margin: 0 auto;
+			padding: 0;
+			width: fit-content;
+		}
+
+	}
+
+	.eli-btn {
+		padding: 0.4em 1.4em;
+		width: fit-content;
+		background-color: rgb(197, 195, 195);
+		border-radius: 5px;
+		margin-left: auto;
+	}
+
+	.eli-logo {
+		width: 150px;
+	}
+
+}
