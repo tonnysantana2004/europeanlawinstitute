@@ -37,5 +37,12 @@ add_action(
 			'unlink-homepage-logo' => true,
 		);
 		add_theme_support( 'custom-logo', $defaults );
+
+		register_nav_menus(
+			array(
+				'primary-menu' => __( 'Primary Menu', 'my-theme' ),
+				'footer-menu'  => __( 'Footer Menu', 'my-theme' ),
+			)
+		);
 	}
 );
