@@ -13,7 +13,7 @@ async function getEntries() {
     const files = await glob(
         './resources/**/*',
         {
-            ignore: ['**/blocks/**', '**/_*.scss'],
+            ignore: ['**/_*.scss'],
             nodir: true
         })
 
@@ -61,7 +61,9 @@ module.exports = async () => {
                     ...defaultConfig.optimization.splitChunks.cacheGroups,
                     style: {
                         ...defaultConfig.optimization.splitChunks.cacheGroups.style,
-                        test: /[\\/]blocks[\\/].*[\\/]style(\.module)?\.(pc|sc|sa|c)ss$/, // ensure the file is inside a block folder
+                        test: /[\\/]template-parts[\\/].*[\\/]style(\.module)?\.(pc|sc|sa|c)ss$/, 
+                        // Just apply the changes if 
+                        // the file is inside a block folder
                     },
                     default: false,
                 },
@@ -101,7 +103,7 @@ module.exports = async () => {
             rules: [
                 ...defaultConfig.module.rules,
                 {   // remove cache string from images
-                    test: /\.(png|jpg|jpeg|gif|svg)$/i,
+                    test: /\.(png|jpg|jpeg|gif|svg|woff2)$/i,
                     type: 'asset/resource',
                     generator: {
                         filename: (pathData) => {

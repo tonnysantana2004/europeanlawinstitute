@@ -1,6 +1,7 @@
 @use "abstracts" as *;
 
 .eli-container{ 
+    width: 100%;
     max-width: $content-width;
     margin: auto;
 }

@@ -20,6 +20,22 @@ add_action(
 add_action(
 	'init',
 	function () {
-		register_block_type( __DIR__ . '/build/blocks/template-parts/header' );
+		register_block_type( __DIR__ . '/build/template-parts/header' );
+	}
+);
+
+
+add_action(
+	'after_setup_theme',
+	function () {
+		$defaults = array(
+			'height'               => 100,
+			'width'                => 400,
+			'flex-height'          => true,
+			'flex-width'           => true,
+			'header-text'          => array( 'site-title', 'site-description' ),
+			'unlink-homepage-logo' => true,
+		);
+		add_theme_support( 'custom-logo', $defaults );
 	}
 );
