@@ -24,9 +24,11 @@
     "@wordpress/scripts": "^31.7.0",
     "glob": "^13.0.6",
     "path": "^0.12.7",
+    "sass": "^1.98.0",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "dependencies": {
-    "flatpickr": "^4.6.13"
+    "flatpickr": "^4.6.13",
+    "remove-files-webpack-plugin": "^1.5.0"
   }
 }
