@@ -11,7 +11,7 @@ const pluginsToRemove = [
 async function getEntries() {
 
     const files = await glob(
-        './resources/**/*',
+        './assets/**/*',
         {
             ignore: ['**/_*.scss'],
             nodir: true
@@ -25,8 +25,8 @@ async function getEntries() {
         const normalized = file.split(path.sep).join('/');
 
         // remove the base folder
-        const relative = normalized.replace(/^\.\/resources\//, '')
-        .replace('resources/', '')
+        const relative = normalized.replace(/^\.\/assets\//, '')
+        .replace('assets/', '')
         // rename the scss folder to css
         .replace('scss/','css/');
 
@@ -108,7 +108,7 @@ module.exports = async () => {
                     generator: {
                         filename: (pathData) => {
                             return pathData.filename
-                                .replace(/^resources[\\/]/, '');
+                                .replace(/^assets[\\/]/, '');
                         }
                     }
                 }

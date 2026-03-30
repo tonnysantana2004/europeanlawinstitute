@@ -1,1 +1,0 @@
-{"version":3,"file":"template-parts/header/view.js","mappings":";;;;AAAAA,OAAO,CAACC,GAAG,CAAC,MAAM,CAAC,C","sources":["webpack://european-law-institute/./gutenberg/template-parts/header/view.js"],"sourcesContent":["console.log('test')"],"names":["console","log"],"sourceRoot":""}
