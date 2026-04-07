@@ -1,0 +1,2 @@
+# Ensure the sh files are correctly formatted. 
+*.sh text eol=lf

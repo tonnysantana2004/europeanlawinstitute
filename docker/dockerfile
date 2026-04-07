@@ -1,0 +1,20 @@
+FROM wordpress:php8.2-fpm-alpine
+
+# Installing dependencies
+RUN apk add --no-cache subversion mysql-client mariadb-connector-c
+
+# Installing WP CLI
+RUN wget -O wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x wp && \ 
+    mv wp /usr/local/bin/wp
+
+# Installing composer
+RUN wget -O composer https://getcomposer.org/composer-stable.phar && \
+    chmod +x composer && \
+    mv composer /usr/local/bin/composer
+
+RUN printf '#!/bin/sh\nexec /usr/bin/mysql --ssl=FALSE "$@"\n' > /usr/local/bin/mysql && \
+    chmod +x /usr/local/bin/mysql
+
+RUN printf '#!/bin/sh\nexec /usr/bin/mysqladmin --ssl=FALSE "$@"\n' > /usr/local/bin/mysqladmin && \
+    chmod +x /usr/local/bin/mysqladmin

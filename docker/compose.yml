@@ -1,0 +1,49 @@
+name: wp-theme-dev-environment
+services:
+  mysql:
+    container_name: ${WORDPRESS_DB_HOST}
+    image: mysql:8
+    volumes:
+      - ./.db_container_volume:/var/lib/mysql
+    restart: unless-stopped
+    env_file:
+      - .env
+    expose:
+      - 3306
+      - 33060
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    
+  wordpress:
+    container_name: wordpress
+    build: .
+    command: sh /entrypoint.sh
+    volumes:
+    
+      # Entrypoint
+      - ./install-wp-tests.sh:/install-wp-tests.sh
+      - ./entrypoint.sh:/entrypoint.sh
+      # File paths
+      - ./.wp_container_volume:/var/www/html
+      - ../.:/var/www/html/wp-content/themes/${THEME_SLUG}
+
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      mysql:
+        condition: service_healthy
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    depends_on:
+      - wordpress
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./.wp_container_volume:/var/www/html
+      - ../.:/var/www/html/wp-content/themes/${THEME_SLUG}
