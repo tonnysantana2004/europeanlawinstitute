@@ -55,6 +55,9 @@ sleep 2
 
 cd wp-content/themes/$THEME_SLUG
 
+# Create the empty composer.json to ensure the configuration will be properly ready
+echo "{}" > composer.json
+
 composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
 
 composer require --dev phpunit/phpunit:^9.6 --no-install
