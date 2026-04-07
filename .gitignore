@@ -8,3 +8,6 @@ vendor/
 *.sql
 *.tar.gz
 *.zip
+
+*.db_container_volume
+*.wp_container_volume
