@@ -60,8 +60,6 @@ echo "{}" > composer.json
 
 composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
 
-composer require --dev phpunit/phpunit:^9.6 --no-install
-composer require --dev yoast/phpunit-polyfills:^2.0 --no-install
 composer require --dev squizlabs/php_codesniffer:^3.7 --no-install
 composer require --dev wp-coding-standards/wpcs:^3.0 --no-install
 composer require --dev phpcompatibility/phpcompatibility-wp:^2.1 --no-install
