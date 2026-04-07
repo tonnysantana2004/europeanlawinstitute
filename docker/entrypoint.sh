@@ -64,6 +64,9 @@ composer require --dev squizlabs/php_codesniffer:^3.7 --no-install
 composer require --dev wp-coding-standards/wpcs:^3.0 --no-install
 composer require --dev phpcompatibility/phpcompatibility-wp:^2.1 --no-install
 
+# Allow media uploads
+chown -R www-data:www-data /var/www/html/wp-content/uploads
+
 echo ---------------------------------
 printf "\033[42m\033[1m Instalation complete. Keep going! \033[0m\n"
 echo ---------------------------------
