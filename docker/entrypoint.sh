@@ -15,14 +15,6 @@ while [ ! -f /var/www/html/wp-config.php ]; do
   sleep 1
 done
 
-echo ---------------------------------
-printf "\033[44m\033[1m Installing the wordpress test environment... \033[0m\n"
-echo ---------------------------------
-
-sleep 2
-
-bash /install-wp-tests.sh wordpress_test root 'wordpress' mysql latest
-
 sleep 2
 
 if ! wp core is-installed --allow-root; then
@@ -39,11 +31,18 @@ if ! wp core is-installed --allow-root; then
     --url="localhost" \
     --skip-email \
     --allow-root
-fi
 
-echo ---------------------------------
-printf "\033[44m\033[1m Generating the plugin files! \033[0m\n"
-echo ---------------------------------
+    cd wp-content/themes/$THEME_SLUG
+
+    # Create the empty composer.json to ensure the configuration will be properly ready
+    echo "{}" > composer.json
+
+    composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+
+    composer require --dev squizlabs/php_codesniffer:^3.7 --no-install
+    composer require --dev wp-coding-standards/wpcs:^3.0 --no-install
+    composer require --dev phpcompatibility/phpcompatibility-wp:^2.1 --no-install
+fi
 
 sleep 2
 
@@ -53,16 +52,6 @@ sleep 2
 #   wp scaffold plugin $PLUGIN_SLUG --allow-root --force
 # fi
 
-cd wp-content/themes/$THEME_SLUG
-
-# Create the empty composer.json to ensure the configuration will be properly ready
-echo "{}" > composer.json
-
-composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-
-composer require --dev squizlabs/php_codesniffer:^3.7 --no-install
-composer require --dev wp-coding-standards/wpcs:^3.0 --no-install
-composer require --dev phpcompatibility/phpcompatibility-wp:^2.1 --no-install
 
 # Allow media uploads
 chown -R www-data:www-data /var/www/html/wp-content/uploads

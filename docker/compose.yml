@@ -24,7 +24,6 @@ services:
     volumes:
     
       # Entrypoint
-      - ./install-wp-tests.sh:/install-wp-tests.sh
       - ./entrypoint.sh:/entrypoint.sh
       # File paths
       - ./.wp_container_volume:/var/www/html
