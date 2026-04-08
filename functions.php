@@ -1,6 +1,6 @@
 <?php
 /**
- * Theme main functionalities
+ * Theme main functionalities.
  *
  * @package European Law Institute
  */
@@ -20,10 +20,14 @@ add_action(
 	}
 );
 
-
-function cc_mime_types( $mimes ) {
-	$mimes['svg']  = 'image/svg+xml';
-	$mimes['webp'] = 'image/webp';
-	return $mimes;
-}
-add_filter( 'upload_mimes', 'cc_mime_types' );
+/**
+ * Add svg and webp upload support for the website.
+ */
+add_filter(
+	'upload_mimes',
+	function ( $mimes ) {
+		$mimes['svg']  = 'image/svg+xml';
+		$mimes['webp'] = 'image/webp';
+		return $mimes;
+	}
+);
