@@ -5,17 +5,17 @@
  * @package European Law Institute
  */
 
-define( 'EU_LAW_PATH_DIR', get_stylesheet_directory() );
-define( 'EU_LAW_PATH_URL', get_stylesheet_directory_uri() );
+define( 'ELI_PATH_DIR', get_stylesheet_directory() );
+define( 'ELI_PATH_URL', get_stylesheet_directory_uri() );
 
 add_action(
 	'enqueue_block_assets',
 	function () {
 		wp_enqueue_style(
 			'eli-styles',
-			EU_LAW_PATH_URL . '/style.css',
+			ELI_PATH_URL . '/style.css',
 			array(),
-			filemtime( EU_LAW_PATH_DIR . '/style.css' )
+			filemtime( ELI_PATH_DIR . '/style.css' )
 		);
 	}
 );
@@ -31,3 +31,6 @@ add_filter(
 		return $mimes;
 	}
 );
+
+// TODO: Remove once the development is finished.
+remove_action( 'wp_footer', 'the_block_template_skip_link' );
