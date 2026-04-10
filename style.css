@@ -26,6 +26,7 @@ Add left and right padding for groups that are  sections
 Ensuring that the content do not lean against the screen corner
 */
 .wp-site-blocks > * > section.wp-block-group {
+    padding: var(--wp--preset--spacing--eli-space-xl);
     padding-right: var(--wp--preset--spacing--eli-space-sm);
     padding-left: var(--wp--preset--spacing--eli-space-sm);
 }
