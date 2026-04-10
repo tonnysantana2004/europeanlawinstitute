@@ -18,6 +18,11 @@
 					"slug": "secondary",
 					"color": "#fcd026",
 					"name": "Yellow"
+				},
+				{
+					"slug": "dark-background",
+					"color": "#16161A",
+					"name": "Gray"
 				}
 			]
 		},
@@ -67,21 +72,21 @@
 			"defaultFontSizes": false,
 			"customFontSize": false,
 			"letterSpacing": false,
-			"lineHeight": false,
+			"lineHeight": "1.4em",
 			"textColumns": false,
 			"fontSizes": [
 				{
-					"name": "Text 1",
+					"name": "Small",
 					"slug": "eli-text-1",
 					"size": "16px"
 				},
 				{
-					"name": "Title 1",
+					"name": "Medium",
 					"slug": "eli-title-1",
-					"size": "40px"
+					"size": "20px"
 				},
 				{
-					"name": "Title 2",
+					"name": "Large",
 					"slug": "eli-title-2",
 					"size": "30px"
 				}
@@ -107,6 +112,14 @@
 				"spacing": {
 					"margin": {
 						"bottom": "0"
+					}
+				}
+			},
+			"core/separator": {
+				"spacing": {
+					"padding": {
+						"top": "20px",
+						"bottom": "20px"
 					}
 				}
 			}
