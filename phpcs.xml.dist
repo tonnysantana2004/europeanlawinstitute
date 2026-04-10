@@ -4,11 +4,12 @@
 
 	<!-- What to scan -->
 	<file>./src/</file>
+	<file>./functions.php</file>
 	<exclude-pattern>/vendor/</exclude-pattern>
 	<exclude-pattern>/node_modules/</exclude-pattern>
 	<exclude-pattern>/tests/</exclude-pattern>
 	<exclude-pattern>/index.php</exclude-pattern>
-	
+
 	<!-- How to scan -->
 	<!-- Usage instructions: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage -->
 	<!-- Annotated ruleset: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
@@ -17,27 +18,32 @@
 	<arg name="colors" />
 	<arg name="extensions" value="php" />
 	<arg name="parallel" value="8" /><!-- Enables parallel processing when available for faster results. -->
-	
+
 	<!-- Rules: Check PHP version compatibility -->
 	<!-- https://github.com/PHPCompatibility/PHPCompatibility#sniffing-your-code-for-compatibility-with-specific-php-versions -->
 	<config name="testVersion" value="8.2-" />
 	<!-- https://github.com/PHPCompatibility/PHPCompatibilityWP -->
 	<rule ref="PHPCompatibilityWP" />
-	
+
 	<!-- Rules: WordPress Coding Standards -->
 	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
 	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties -->
 	<config name="minimum_supported_wp_version" value="6.9.4" />
-	
-	<rule ref="WordPress" />
-	
+
+	<!-- General rules -->
+	<rule ref="WordPress">
+
+		<!-- Allow to use short prefix, such as ELI -->
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.ShortPrefixPassed" />
+	</rule>
+
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<!-- Value: replace the function, class, and variable prefixes used. Separate multiple prefixes with a comma. -->
-			<property name="prefixes" type="array" value="eu_law" />
+			<property name="prefixes" type="array" value="eli" />
 		</properties>
 	</rule>
-	
+
 	<rule ref="WordPress.Files.FileName">
 		<exclude-pattern>/src</exclude-pattern>
 	</rule>
