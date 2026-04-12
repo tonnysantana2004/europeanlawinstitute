@@ -34,3 +34,6 @@ add_filter(
 
 // TODO: Remove once the development is finished.
 remove_action( 'wp_footer', 'the_block_template_skip_link' );
+
+// Add blocks.
+require 'blocks/blocks.php';
