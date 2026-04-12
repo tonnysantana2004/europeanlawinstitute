@@ -1,12 +1,12 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
-	'authors-list' => array(
+	'svgicon' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'eli-blocks/authors-list',
+		'name' => 'eli-blocks/svgicon',
 		'version' => '0.1.0',
-		'title' => 'Authors List',
+		'title' => 'Svg Icon',
 		'category' => 'widgets',
 		'icon' => 'smiley',
 		'description' => 'Example block scaffolded with Create Block tool.',
@@ -16,11 +16,10 @@ return array(
 		'supports' => array(
 			'html' => false
 		),
-		'textdomain' => 'authors-list',
+		'textdomain' => 'svgicon',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	)
 );
