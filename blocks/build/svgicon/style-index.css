@@ -7,11 +7,27 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-eli-blocks-svgicon {
+.wp-block-eli-blocks-svgicon svg {
   width: 55px;
   height: auto;
   aspect-ratio: 1;
   background: #ccc;
+}
+.eli-svg-icon-preview {
+  height: 100px;
+  background: #ccc;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.eli-svg-icon-preview svg {
+  width: 55px;
+  height: auto;
+  aspect-ratio: 1;
+  background: #ccc;
+  margin: auto;
+  padding: 12px;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

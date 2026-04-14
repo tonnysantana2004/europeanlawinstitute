@@ -9,7 +9,7 @@ return array(
 		'title' => 'Svg Icon',
 		'category' => 'widgets',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'A simple component to select an SVG Icon Element.',
 		'example' => array(
 			
 		),
@@ -20,6 +20,25 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'viewScript' => 'file:./view.js',
+		'attributes' => array(
+			'id' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'fill' => array(
+				'type' => 'string'
+			),
+			'background' => array(
+				'type' => 'string'
+			),
+			'stroke' => array(
+				'type' => 'string'
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => null
+			)
+		)
 	)
 );

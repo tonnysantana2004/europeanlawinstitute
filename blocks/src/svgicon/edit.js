@@ -1,19 +1,21 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
-
 import { Icon } from '@wordpress/icons';
+import { RawHTML } from '@wordpress/element';
+
+import {
+	useBlockProps,
+	InspectorControls,
+	MediaUpload,
+	__experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown,
+	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients,
+	__experimentalSpacingSizesControl as SpacingSizesControl
+} from '@wordpress/block-editor';
+
+import * as BlockEditor from '@wordpress/block-editor';
+console.log(BlockEditor); // DimensionControl não aparece aqui
+
+import { PanelBody, PanelRow, Button } from '@wordpress/components';
+import { useEntityRecord } from "@wordpress/core-data";
 import { wordpress } from '@wordpress/icons';
 
 /**
@@ -24,19 +26,118 @@ import { wordpress } from '@wordpress/icons';
  */
 import './editor.scss';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
-export default function Edit() {
-	return (
-		<p {...useBlockProps()}>
-			<Icon icon={ wordpress } />
-		</p>
+const getInlineSvg = (id) => {
 
+	const { record: attachment, isLoading } = useEntityRecord(
+		"postType",
+		"attachment",
+		id
+	);
+
+	if (attachment?.meta?._eli_inline_svg) {
+		return (
+			<RawHTML>
+				{attachment?.meta?._eli_inline_svg}
+			</RawHTML>
+		)
+	}
+
+	return (wordpress);
+};
+
+export default function Edit({ attributes, setAttributes }) {
+
+	const colorGradientSettings = useMultipleOriginColorsAndGradients()
+	return (
+		<>
+			<p {...useBlockProps()}>
+				<Icon icon={getInlineSvg(attributes.id)} />
+			</p>
+
+			<InspectorControls group="dimensions">
+
+				<SpacingSizesControl
+					label="Margin"
+					onChange={(value) => setAttributes({ margin: value })}
+					values={attributes.margin}
+				/>
+
+			</InspectorControls>
+
+			<InspectorControls group="color">
+
+				<ColorGradientSettingsDropdown
+
+					style={{ 'margin': 0 }}
+					settings={[
+						{
+							label: 'Fill',
+							colorValue: attributes.fill,
+							onColorChange: (color) => setAttributes({ fill: color }),
+						}
+					]}
+					{...colorGradientSettings}
+				/>
+
+				<ColorGradientSettingsDropdown
+
+					style={{ 'margin': 0 }}
+					settings={[
+						{
+							label: 'Stroke',
+							colorValue: attributes.stroke,
+							onColorChange: (color) => setAttributes({ stroke: color }),
+						}
+					]}
+					{...colorGradientSettings}
+				/>
+
+				<ColorGradientSettingsDropdown
+
+					style={{ 'margin': 0 }}
+					settings={[
+						{
+							label: 'Background',
+							colorValue: attributes.background,
+							onColorChange: (color) => setAttributes({ background: color }),
+						}
+					]}
+					{...colorGradientSettings}
+				/>
+			</InspectorControls>
+
+			<InspectorControls >
+				<PanelBody title='Icon Settings'>
+					<PanelRow>
+						<div className='eli-svg-icon-preview'>
+							<Icon icon={getInlineSvg(attributes.id)} />
+						</div>
+					</PanelRow>
+					<PanelRow>
+						<MediaUpload
+							title="Select form image"
+							allowedTypes={['image/svg+xml']}
+							value={attributes.id}
+							onSelect={(selectedSvg) => setAttributes({ id: selectedSvg.id })}
+							render={({ open }) => {
+
+								if (!attributes.id) {
+
+									return (
+										<Button variant="secondary" onClick={open} >Select Icon</Button>
+									)
+								} else {
+									return (<>
+										<Button variant="secondary" isDestructive onClick={() => setAttributes({ id: null })}>Remove Icon</Button>
+									</>
+									)
+								}
+							}}
+
+						/>
+					</PanelRow>
+				</PanelBody>
+			</InspectorControls>
+		</>
 	);
 }

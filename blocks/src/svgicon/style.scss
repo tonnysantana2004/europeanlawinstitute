@@ -6,8 +6,31 @@
  */
 
 .wp-block-eli-blocks-svgicon {
-	width:55px;
-	height:auto;
-	aspect-ratio: 1;
+
+	& svg {
+		width: 55px;
+		height: auto;
+		aspect-ratio: 1;
+		background: #ccc;
+	}
+
+}
+
+.eli-svg-icon-preview {
+	height: 100px;
 	background: #ccc;
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	& svg {
+		width: 55px;
+		height: auto;
+		aspect-ratio: 1;
+		background: #ccc;
+		margin: auto;
+		padding:12px;
+	}
 }

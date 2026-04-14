@@ -32,6 +32,16 @@ add_filter(
 	}
 );
 
+register_post_meta(
+	'attachment',
+	'_eli_inline_svg',
+	array(
+		'show_in_rest' => true,
+		'single'       => true,
+		'type'         => 'string',
+	)
+);
+
 // Add SVG inline support.
 add_filter(
 	'wp_prepare_attachment_for_js',

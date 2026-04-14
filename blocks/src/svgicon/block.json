@@ -6,7 +6,7 @@
 	"title": "Svg Icon",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "A simple component to select an SVG Icon Element.",
 	"example": {},
 	"supports": {
 		"html": false
@@ -15,5 +15,24 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"id": {
+			"type": "number",
+			"default": null
+		},
+		"fill": {
+			"type": "string"
+		},
+		"background": {
+			"type": "string"
+		},
+		"stroke": {
+			"type": "string"
+		},
+		"padding": {
+			"type": "string",
+			"default" : null
+		}
+	}
 }
